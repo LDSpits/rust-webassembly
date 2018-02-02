@@ -1,0 +1,8 @@
+[package]
+name = "wasm-rust-example"
+version = "0.1.0"
+authors = ["Lucas Spits <spits.lucas@gmail.com>"]
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["cdylib"]

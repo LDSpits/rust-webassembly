@@ -1,12 +1,18 @@
 <html>
 </body>
-<script>
-  fetch('http://127.0.0.1:8080/build/fn-gc.wasm')
-    .then(response => response.arrayBuffer())
-    .then(bytes => WebAssembly.instantiate(bytes, {}))
-    .then(results => {
-        alert(results.instance.exports.add_one(41))
-    })
+<script async>
+
+    (async() => {
+        let result = await fetch('http://127.0.0.1:8080/build/fn-gc.wasm');
+
+        let bytes = await result.arrayBuffer();
+        let rust = await WebAssembly.instantiate(bytes, {});
+
+        console.time("webassembly-add_one");
+        alert("Result: " + rust.instance.exports.multiply(40, 2))
+        console.timeEnd("webassembly-add_one");
+    })()
+
 </script>
 </body>
 </html>

@@ -1,20 +1,20 @@
 {
-  "name": "wasm-rust",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "postinstall": "./setup_rust.sh",
-    "compile": "rustc +nightly --target wasm32-unknown-unknown -O ./fn.rs --out-dir ./build --crate-type=cdylib",
-    "gc": "wasm-gc ./build/fn.wasm ./build/fn-gc.wasm",
-    "build": "npm-run-all compile gc",
-    "start": "http-server --cors",
-    "open": "open fn.html"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "http-server": "^0.10.0",
-    "npm-run-all": "^4.1.2"
-  }
+    "name": "wasm-rust",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "postinstall": "./setup_rust.sh",
+        "compile": "cargo  +nightly build --target wasm32-unknown-unknown --release",
+        "gc": "wasm-gc .\\target\\wasm32-unknown-unknown\\release\\wasm_rust_example.wasm .\\build\\fn-gc.wasm",
+        "build": "npm-run-all compile gc",
+        "start": "http-server --cors",
+        "open": "open fn.html"
+    },
+    "author": "",
+        "license": "ISC",
+        "devDependencies": {
+        "http-server": "^0.10.0",
+        "npm-run-all": "^4.1.2"
+    }
 }
